@@ -1,0 +1,251 @@
+:root {
+    --color-primary: #146ebe;
+    --color-primary-dark: #0f5c9e;
+    --color-light-bg: #f8f9fa;
+    --color-light-text: #333;
+    --color-light-hover: #e9ecef;
+    --color-dark-bg: #1c1c1e;
+    --color-dark-text: #e4e4e4;
+    --color-dark-hover: #2c2c2e;
+    --color-border-light: #ddd;
+    --color-border-dark: #444;
+    --box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+    --box-shadow-hover: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+}
+
+/* General Styles */
+a.navbar-brand img {
+    width: 60px;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-item {
+    font-weight: 500;
+    padding: 0 10px;
+    margin-right: 5px;
+}
+
+.nav-item:hover {
+    background-color: var(--color-light-hover);
+    border-radius: 5px;
+}
+
+[data-bs-theme="dark"] .nav-item:hover {
+    background-color: var(--color-dark-hover);
+}
+
+.nav-link i {
+    margin-right: 10px;
+}
+
+.active-item {
+    background-color: var(--color-primary) !important;
+    border-radius: 5px !important;
+    transition: all 0.7s ease-in-out;
+    box-shadow: var(--box-shadow);
+}
+
+.active-item i,
+.active-item span {
+    color: white;
+}
+
+.btn-login,
+.btn-dark-mode {
+    background-color: var(--color-primary);
+    color: white;
+    font-weight: 500;
+    border-radius: 5px;
+    border: 1px solid var(--color-primary);
+}
+
+.btn-login:hover,
+.btn-dark-mode:hover {
+    background-color: var(--color-primary-dark);
+    border-color: var(--color-primary-dark);
+}
+
+/* Mobile Mode */
+.mobile-mode {
+    display: none;
+}
+
+@media (max-width: 991px) {
+    .mobile-mode {
+        display: block;
+        width: 100%;
+    }
+
+    .nav-link i {
+        margin-right: 0;
+        padding: 10px;
+        padding-bottom: 5px;
+    }
+
+    .nav-item {
+        flex: 1;
+        text-align: center;
+        margin: 5px;
+    }
+
+    .nav-item i {
+        font-size: 20px;
+    }
+
+    .nav-item span {
+        font-size: 10px;
+    }
+
+    .nav-items {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+}
+
+/* Avatar */
+.avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    padding: 0;
+}
+
+.btn-avatar {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+}
+
+/* General Styles */
+.offcanvas-body {
+    text-align: center;
+    padding: 20px;
+}
+
+.avatar-full {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 20px;
+}
+
+.full-name {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+/* Light Mode */
+[data-bs-theme="light"] .offcanvas-body {
+    background-color: var(--color-light-bg);
+    color: var(--color-light-text);
+}
+
+[data-bs-theme="light"] .full-name {
+    color: var(--color-light-text);
+}
+
+[data-bs-theme="light"] .offcanvas-body span {
+    color: var(--color-light-text);
+}
+
+[data-bs-theme="light"] .list-group-item {
+    background-color: transparent;
+    border-bottom: 1px solid var(--color-border-light);
+    color: var(--color-light-text);
+}
+
+[data-bs-theme="light"] .list-group-item:hover {
+    background-color: var(--color-light-hover);
+    color: var(--color-primary);
+}
+
+/* Dark Mode */
+[data-bs-theme="dark"] .offcanvas-body {
+    background-color: var(--color-dark-bg);
+    color: var(--color-dark-text);
+}
+
+[data-bs-theme="dark"] .full-name {
+    color: var(--color-dark-text);
+}
+
+[data-bs-theme="dark"] .offcanvas-body span {
+    color: var(--color-dark-text);
+}
+
+[data-bs-theme="dark"] .list-group-item {
+    background-color: transparent;
+    border-bottom: 1px solid var(--color-border-dark);
+    color: var(--color-dark-text);
+}
+
+[data-bs-theme="dark"] .list-group-item:hover {
+    background-color: var(--color-dark-hover);
+    color: var(--color-primary);
+}
+
+/* Shared Styles */
+.list-group {
+    margin-top: 30px;
+}
+
+.list-group-item {
+    display: flex;
+    align-items: center;
+    padding: 15px 20px;
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.list-group-item i {
+    margin-right: 15px;
+    font-size: 1.2rem;
+}
+
+.list-group-item span {
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+body {
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
+
+/* Hiệu ứng chuyển cảnh cho dark mode toggle */
+.btn-dark-mode {
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+.btn-dark-mode:hover {
+    background-color: #333;
+    color: #fff;
+}
+
+.nav-create-quiz {
+    color: var(--color-light-text);
+    font-weight: 500;
+    border-radius: 5px;
+    box-shadow: var(--box-shadow);
+    margin-left: 20px;
+}
+
+.nav-create-quiz:hover {
+    box-shadow: var(--box-shadow-hover);
+}
+
+[data-bs-theme="dark"] .nav-create-quiz {
+    color: var(--color-dark-text);
+    box-shadow: var(--box-shadow-hover);
+}
+
+.nav-create-quiz i {
+    margin-right: 10px;
+}

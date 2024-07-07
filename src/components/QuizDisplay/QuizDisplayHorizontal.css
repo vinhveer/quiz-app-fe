@@ -1,0 +1,12 @@
+.card-hori {
+    width: 290px;
+    margin-right: 20px;
+    margin-bottom: 20px;
+    border: none;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+}
+
+.card-hori:hover {
+    transform: scale(1.02);
+    transition: transform 0.3s;
+}

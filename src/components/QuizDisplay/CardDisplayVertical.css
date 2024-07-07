@@ -1,0 +1,65 @@
+.wrapper-container {
+  position: relative; /* Đảm bảo các nút cuộn nằm trong khu vực của wrapper */
+}
+
+.wrapper {
+  display: flex;
+  overflow-x: auto;
+  padding-right: 0; /* Kết hợp vào đây để tránh cần thêm một quy tắc riêng */
+}
+
+.wrapper::-webkit-scrollbar {
+  display: none;
+}
+
+.wrapper .card {
+  min-width: 220px;
+}
+
+.item {
+  display: inline-block;
+  margin-right: 10px;
+}
+
+.scroll-button {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 10;
+  font-size: 30px;
+  background-color: white;
+  box-shadow: rgba(0, 0, 0, 0.2) 0px 12px 28px 0px, rgba(0, 0, 0, 0.1) 0px 2px 4px 0px, rgba(255, 255, 255, 0.05) 0px 0px 0px 1px inset;
+}
+
+.scroll-button:hover {
+  background-color: white;
+}
+
+[data-bs-theme="dark"] .scroll-button {
+  background-color: #343a40;
+  color: white;
+}
+
+.scroll-left {
+  left: -20px;
+}
+
+.scroll-right {
+  right: -20px;
+}
+
+.btn-button {
+  padding: 0;
+  transition: all 0.3s;
+}
+
+.btn-button:hover {
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  padding-left: 10px;
+  padding-top: 5px;
+  transition: all 0.3s;
+}
+
+.btn-button i {
+  padding: 10px;
+}

@@ -1,0 +1,25 @@
+/* Library.css */
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-header .icons {
+    display: flex;
+    gap: 10px;
+}
+
+.card-header .icons .icon-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #6c757d;
+    font-size: 1.2rem;
+    transition: color 0.3s;
+}
+
+.card-header .icons .icon-btn:hover {
+    color: #000;
+}
