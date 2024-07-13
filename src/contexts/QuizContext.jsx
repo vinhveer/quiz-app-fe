@@ -1,5 +1,5 @@
 import React, { createContext, useState, useEffect, useContext } from 'react';
-import { AppContext } from '../AppContext';
+import { AppContext } from './AppContext';
 import { UserContext } from './UserContext';
 
 const QuizContext = createContext();

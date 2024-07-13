@@ -1,17 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { Spinner } from 'react-bootstrap';
 import './App.css';
 import Authentication from './components/Authentication/Authentication';
 import Navbar from './components/Navbar/Navbar';
-import Home from './pages/Home/Home';
-import AccountSettings from './pages/Account/AccountSettings';
-import NotFound from './pages/NotFound/NotFound';
-import MyLibrary from './pages/MyLibrary/MyLibrary';
-import Search from './pages/Search/Search';
-import CreateNewQuiz from './pages/CreateNewQuiz/CreateNewQuiz';
-import CreateNewSuccess from './components/CreateQuiz/CreateNewSuccess';
-import Quiz from './pages/Quiz/Quiz';
+
+const Home = lazy(() => import('./pages/Home/Home'));
+const AccountSettings = lazy(() => import('./pages/Account/AccountSettings'));
+const NotFound = lazy(() => import('./pages/NotFound/NotFound'));
+const MyLibrary = lazy(() => import('./pages/MyLibrary/MyLibrary'));
+const Search = lazy(() => import('./pages/Search/Search'));
+const CreateNewQuiz = lazy(() => import('./pages/CreateNewQuiz/CreateNewQuiz'));
+const CreateNewSuccess = lazy(() => import('./components/CreateQuiz/CreateNewSuccess'));
+const Quiz = lazy(() => import('./pages/Quiz/Quiz'));
 
 function App() {
   const [loading, setLoading] = useState(false);
@@ -23,7 +24,7 @@ function App() {
 
     handleStart(); // Start loading when route changes
 
-    const timer = setTimeout(() => handleComplete(), 300); // Simulate loading completion after 1 second
+    const timer = setTimeout(() => handleComplete(), 300); // Simulate loading completion after 300ms
 
     return () => clearTimeout(timer);
   }, [location]);
@@ -32,13 +33,15 @@ function App() {
     <div>
       <Navbar />
       <Authentication />
-      {loading ? (
-        <div className="d-flex justify-content-center align-items-center" style={{ height: '80vh' }}>
-          <Spinner animation="border" role="status" style={{ width: '3rem', height: '3rem' }}>
-            <span className="sr-only">Loading...</span>
-          </Spinner>
-        </div>
-      ) : (
+      <Suspense
+        fallback={
+          <div className="d-flex justify-content-center align-items-center" style={{ height: '80vh' }}>
+            <Spinner animation="border" role="status" style={{ width: '3rem', height: '3rem' }}>
+              <span className="sr-only">Loading...</span>
+            </Spinner>
+          </div>
+        }
+      >
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/account-settings" element={<AccountSettings />} />
@@ -50,7 +53,7 @@ function App() {
           <Route path="/quiz/create/failure" element={<CreateNewSuccess />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
-      )}
+      </Suspense>
     </div>
   );
 }

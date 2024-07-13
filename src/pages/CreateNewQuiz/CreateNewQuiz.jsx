@@ -17,7 +17,7 @@ const debounce = (func, delay) => {
 
 const CreateNewQuiz = () => {
   const { categories, fetchCategories, searchCategory, createCategory } = useContext(CategoryContext);
-  const { createQuiz, loading } = useContext(QuizContext);
+  const { createQuiz, loading: globalLoading } = useContext(QuizContext);
   const [selectedFile, setSelectedFile] = useState(null);
   const [preview, setPreview] = useState(null);
   const [difficulty, setDifficulty] = useState('Easy');
@@ -29,6 +29,7 @@ const CreateNewQuiz = () => {
   const [currentCategory, setCurrentCategory] = useState({ name: '', description: '' });
   const [editMode, setEditMode] = useState(false);
   const [modalLoading, setModalLoading] = useState(false);
+  const [localLoading, setLocalLoading] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
   const { state } = location;
@@ -107,7 +108,10 @@ const CreateNewQuiz = () => {
       category: selectedCategory.id,
     };
 
+    setLocalLoading(true); // Set local loading state to true before starting the async operation
     const createdQuiz = await createQuiz(newQuiz, selectedFile);
+    setLocalLoading(false); // Set local loading state to false after the async operation completes
+
     if (createdQuiz) {
       navigate(`/quiz/create/success`, { state: { status: 'success', quizId: createdQuiz.id } });
     } else {
@@ -135,7 +139,7 @@ const CreateNewQuiz = () => {
     fetchCategories(); // Refresh categories
   };
 
-  if (loading) {
+  if (globalLoading || localLoading) {
     return (
       <div className="d-flex justify-content-center align-items-center" style={{ height: '100vh' }}>
         <div className="text-center">

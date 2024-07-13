@@ -1,8 +1,8 @@
 import React, { createContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { UserProvider } from './contexts/UserContext';
-import { CategoryProvider } from './contexts/CategoryContext';
-import { QuizContext, QuizProvider } from './contexts/QuizContext';
+import { UserProvider } from './UserContext';
+import { CategoryProvider } from './CategoryContext';
+import { QuizContext, QuizProvider } from './QuizContext';
 
 const AppContext = createContext();
 

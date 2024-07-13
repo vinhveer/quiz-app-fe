@@ -1,5 +1,5 @@
 import React, { createContext, useState, useContext } from 'react';
-import { AppContext } from '../AppContext';
+import { AppContext } from './AppContext';
 
 const CategoryContext = createContext();
 

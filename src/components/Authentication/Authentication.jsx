@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
-import { AppContext } from '../../AppContext';
+import { AppContext } from '../../contexts/AppContext';
 import './Authentication.css';
 import ToastNotification from '../ToastNotification/ToastNotification';
 import { Spinner } from 'react-bootstrap';
