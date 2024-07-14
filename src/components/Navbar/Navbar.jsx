@@ -49,10 +49,10 @@ const Navbar = () => {
                         <a className="navbar-brand" onClick={() => handleNavigation('/')}>
                             <img src={darkMode ? logo_dark : logo} alt="" srcset="" />
                         </a>
-                        <button className="btn nav-create-quiz" onClick={() => handleNavigation('/create-new-quiz')}>
+                        {user && (<button className="btn nav-create-quiz" onClick={() => handleNavigation('/create-new-quiz')}>
                             <i className="fa-solid fa-square-plus"></i>
                             Create
-                        </button>
+                        </button>)}
                     </div>
                     {/* For desktop */}
                     <div className="collapse navbar-collapse" id="navbarNav">
@@ -145,10 +145,10 @@ const Navbar = () => {
                         <li className="list-group-item" onClick={toggleDarkMode}>
                             {darkMode ? (
                                 <div>
-                                    <i className="fa-solid fa-sun"></i> 
+                                    <i className="fa-solid fa-sun"></i>
                                     <span>Light Mode</span>
                                 </div>
-                            ): (
+                            ) : (
                                 <div>
                                     <i className="fa-solid fa-moon"></i>
                                     <span> Dark Mode</span>
