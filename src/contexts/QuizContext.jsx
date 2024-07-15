@@ -8,15 +8,8 @@ const QuizProvider = ({ children }) => {
     const { state, uploadFile } = useContext(AppContext);
     const { user, fetchUserDetails } = useContext(UserContext);
     const { jwt } = state;
-    const [quizzes, setQuizzes] = useState([]);
     const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
-
-    useEffect(() => {
-        if (user) {
-            fetchQuizzes();
-        }
-    }, [user, jwt]);
 
     const fetchQuizzes = async () => {
         setLoading(true);
@@ -29,13 +22,15 @@ const QuizProvider = ({ children }) => {
             });
             const data = await response.json();
             if (response.ok && data.status === 'success') {
-                setQuizzes(data.data);
                 setError(null);
+                return data.data;
             } else {
                 setError(data.message);
+                return [];
             }
         } catch (error) {
             setError('Failed to fetch quizzes. Please try again.');
+            return [];
         } finally {
             setLoading(false);
         }
@@ -56,7 +51,6 @@ const QuizProvider = ({ children }) => {
             });
             const data = await response.json();
             if (response.ok && data.status === 'success') {
-                setQuizzes(prev => [...prev, data.data]);
                 setError(null);
                 return data.data;
             } else {
@@ -89,7 +83,6 @@ const QuizProvider = ({ children }) => {
             });
             const data = await response.json();
             if (response.ok && data.status === 'success') {
-                setQuizzes(prev => prev.map(q => q.id === id ? data.data : q));
                 setError(null);
                 return data.data;
             } else {
@@ -115,7 +108,6 @@ const QuizProvider = ({ children }) => {
             });
             const data = await response.json();
             if (response.ok && data.status === 'success') {
-                setQuizzes(prev => prev.filter(q => q.id !== id));
                 setError(null);
                 return data.data;
             } else {
@@ -260,13 +252,12 @@ const QuizProvider = ({ children }) => {
             setError('User not logged in.');
             return [];
         }
-
         return await getQuizByCreatedBy(user.id);
     };
 
     return (
         <QuizContext.Provider value={{
-            quizzes, fetchQuizzes, createQuiz, updateQuiz, deleteQuiz,
+            fetchQuizzes, createQuiz, updateQuiz, deleteQuiz,
             searchQuiz, getQuizById, getQuizByCategoryId, getQuizByDifficulty,
             getQuizByCreatedBy, getMyQuiz, error, loading
         }}>

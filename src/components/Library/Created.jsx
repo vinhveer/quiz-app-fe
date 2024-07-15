@@ -6,13 +6,18 @@ import { QuizContext } from '../../contexts/QuizContext';
 import './Library.css';
 
 const Created = () => {
-    const { quizzes, getMyQuiz, loading, error } = useContext(QuizContext);
     const [sortTitle, setSortTitle] = useState('All');
     const [view, setView] = useState('created');
     const [inProp, setInProp] = useState(true);
+    const [quizzes, setQuizzes] = useState([]);
+    const { getMyQuiz, loading, error } = useContext(QuizContext);
 
     useEffect(() => {
-        getMyQuiz();
+        const fetchData = async () => {
+            const myQuizzes = await getMyQuiz();
+            setQuizzes(myQuizzes);
+        };
+        fetchData();
     }, []);
 
     const handleSortSelect = (title) => {
