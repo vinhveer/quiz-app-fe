@@ -47,7 +47,7 @@ const Navbar = () => {
                 <div className="container-fluid ps-4 pe-4">
                     <div className="brand d-flex justify-content-center align-items-center">
                         <a className="navbar-brand" onClick={() => handleNavigation('/')}>
-                            <img src={darkMode ? logo_dark : logo} alt="" srcset="" />
+                            <img src={darkMode ? logo_dark : logo} alt=""/>
                         </a>
                         {user && (<button className="btn nav-create-quiz" onClick={() => handleNavigation('/create-new-quiz')}>
                             <i className="fa-solid fa-square-plus"></i>
@@ -156,7 +156,7 @@ const Navbar = () => {
                             )}
                         </li>
                         <li className="list-group-item" onClick={() => handleNavigation('/account-settings')}>
-                            <i class="fa-solid fa-gear"></i>
+                            <i className="fa-solid fa-gear"></i>
                             <span>Account Settings</span>
                         </li>
                         <li className="list-group-item" onClick={handleLogout}>
