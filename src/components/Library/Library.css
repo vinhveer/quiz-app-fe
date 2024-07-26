@@ -1,34 +1,33 @@
-.btn-exit {
-    border: none;
-    font-size: 25px;
-}
-
 /* Library.css */
-
-.page-transition-enter {
-    opacity: 0;
-    transform: scale(0.9);
-}
-.page-transition-enter-active {
-    opacity: 1;
-    transform: scale(1);
-    transition: opacity 300ms, transform 300ms;
-}
-.page-transition-exit {
-    opacity: 1;
-    transform: scale(1);
-}
-.page-transition-exit-active {
-    opacity: 0;
-    transform: scale(0.9);
-    transition: opacity 300ms, transform 300ms;
+.card-hori {
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.3s;
 }
 
-.btn-exit {
-    background-color: #f8f9fa;
-    border: none;
-    color: #000;
+.card-hori:hover {
+    transform: scale(1.05);
 }
-.btn-exit:hover {
-    background-color: #e2e6ea;
+
+.card-hori img {
+    height: 150px;
+    object-fit: cover;
+}
+
+.card-hori .card-body {
+    padding: 1rem;
+}
+
+.card-hori.selected {
+    border: 2px solid #007bff;
+}
+
+.card-hori .checkbox-container {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.card-hori .checkbox-container input[type="checkbox"] {
+    transform: scale(1.2);
 }

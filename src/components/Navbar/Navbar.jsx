@@ -13,6 +13,11 @@ const Navbar = () => {
     const location = useLocation();
 
     useEffect(() => {
+        localStorage.setItem('theme', darkMode ? 'dark' : 'light');
+        const theme = localStorage.getItem('theme');
+        if (theme === 'dark') {
+            setDarkMode(true);
+        }
         document.body.setAttribute('data-bs-theme', darkMode ? 'dark' : 'light');
     }, [darkMode]);
 
@@ -49,7 +54,7 @@ const Navbar = () => {
                         <a className="navbar-brand" onClick={() => handleNavigation('/')}>
                             <img src={darkMode ? logo_dark : logo} alt=""/>
                         </a>
-                        {user && (<button className="btn nav-create-quiz" onClick={() => handleNavigation('/create-new-quiz')}>
+                        {user && (<button className="btn nav-create-quiz ms-3" onClick={() => handleNavigation('/create-new-quiz')}>
                             <i className="fa-solid fa-square-plus"></i>
                             Create
                         </button>)}

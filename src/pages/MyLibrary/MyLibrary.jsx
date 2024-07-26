@@ -21,7 +21,7 @@ const MyLibrary = () => {
   };
 
   return (
-    <div className="container-fluid d-flex">
+    <div className="container-fluid">
       <div className="sidebar">
         <a className="d-flex align-items-center p-3 pt-0 link-body-emphasis text-decoration-none">
           <span className="fs-5 fw-semibold">Thư viện của tôi</span>

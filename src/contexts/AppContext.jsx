@@ -102,13 +102,15 @@ const AppProvider = ({ children }) => {
                 setState(prevState => ({
                     ...prevState,
                     error: null,
-                    loading: false
+                    loading: false,
+                    registerSuccess: true
                 }));
             } else {
                 setState(prevState => ({
                     ...prevState,
                     error: data.message,
-                    loading: false
+                    loading: false,
+                    registerSuccess: false
                 }));
             }
         } catch (error) {

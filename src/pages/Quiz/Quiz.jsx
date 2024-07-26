@@ -50,48 +50,80 @@ const Quiz = () => {
 
   return (
     <div className="container-fluid">
-      <div className="card">
-        <div className="card-body">
-          <div className="row">
-            <div className="col-md-3">
+      <div className="row">
+        <div className="col-md-4">
+          <div className="card">
+            <div className="card-body">
               <img src={quiz.image} className='img-quiz-details' alt="Quiz" />
-            </div>
-            <div className="col-md-9">
               <h2 className='mt-3'>{quiz.title}</h2>
               <p>{quiz.description}</p>
-              <div>
-                <small className="d-inline-flex mb-3 px-2 fw-semibold text-warning-emphasis bg-warning-subtle border border-warning-subtle rounded-2">
-                  {quiz.difficulty}
-                </small>
-                <p className='d-flex align-items-center'>
-                  <img src={quiz.createdByAvatar} className='avatar-img me-3' alt="Admin" />
-                  <span className="fw-semibold">{quiz.createdByUsername}</span>
-                </p>
+              <small className="d-inline-flex mb-3 px-2 fw-semibold text-warning-emphasis bg-warning-subtle border border-warning-subtle rounded-2">
+                {quiz.difficulty}
+              </small>
+              <p className='d-flex align-items-center'>
+                <img src={quiz.createdByAvatar} className='avatar-img me-3' alt="Admin" />
+                <span className="fw-semibold">{quiz.createdByUsername}</span>
+              </p>
+              <h6>Options</h6>
+              <div className="list-group list-group-flush border scrollarea mt-0">
+                <a
+                  className='list-group-item py-3'
+                  aria-current="true"
+                  onClick={() => setActiveTab('favorite')}
+                >
+                  <i className="fa-solid fa-heart"></i>
+                  <span>Play</span>
+                </a>
+                <a
+                  className='list-group-item py-3'
+                  aria-current="true"
+                  onClick={() => setActiveTab('favorite')}
+                >
+                  <i className="fa-solid fa-heart"></i>
+                  <span>Start a live session</span>
+                </a>
+                <a
+                  className='list-group-item py-3'
+                  aria-current="true"
+                  onClick={() => setActiveTab('favorite')}
+                >
+                  <i className="fa-solid fa-heart"></i>
+                  <span>Question</span>
+                </a>
+                <a
+                  className='list-group-item py-3'
+                  aria-current="true"
+                  onClick={() => setActiveTab('favorite')}
+                >
+                  <i className="fa-solid fa-heart"></i>
+                  <span>Access</span>
+                </a>
               </div>
-              <button className="btn btn-primary">Play now</button>
-              <button className="btn btn-primary ms-2">Start a Live session</button>
+            </div>
+          </div>
+        </div>
+        <div className="col-md-8">
+          <h4 className='mb-3'>Question</h4>
+          <div className="mb-3">
+            <button className="btn btn-outline-primary me-2">
+              Add new question
+            </button>
+            <button className="btn btn-outline-primary me-2">
+              Add new slide
+            </button>
+            <button className="btn btn-outline-danger">
+              More
+            </button>
+          </div>
+          <div className="card">
+            <div className="card-body">
+              Question 1.
+              <h5>How to play?</h5>
             </div>
           </div>
         </div>
       </div>
-      <div className="row">
-        <div className="col-md-6">
-          <div className="card mt-3">
-            <div className="card-body">
-              <h5>Manage</h5>
-              <p>You don't have access</p>
-            </div>
-          </div>
-        </div>
-        <div className="col-md-6">
-          <div className="card mt-3">
-            <div className="card-body">
-              <h5>Leaderboard</h5>
-              <p>You haven't played yet</p>
-            </div>
-          </div>
-        </div>
-      </div>
+
     </div>
   );
 };

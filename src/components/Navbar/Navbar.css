@@ -105,6 +105,10 @@ a.navbar-brand img {
         margin: 0;
         padding: 0;
     }
+
+    .nav-create-quiz {
+        display: none;
+    }
 }
 
 /* Avatar */
@@ -235,7 +239,6 @@ body {
     font-weight: 500;
     border-radius: 5px;
     box-shadow: var(--box-shadow);
-    margin-left: 20px;
 }
 
 .nav-create-quiz:hover {

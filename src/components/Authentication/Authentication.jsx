@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { AppContext } from '../../contexts/AppContext';
 import './Authentication.css';
-import ToastNotification from '../ToastNotification/ToastNotification';
 import { Spinner } from 'react-bootstrap';
 
 const Authentication = () => {
@@ -17,26 +16,20 @@ const Authentication = () => {
     });
 
     const [errors, setErrors] = useState({});
-    const [notification, setNotification] = useState(null);
-    const [redirectToLogin, setRedirectToLogin] = useState(false);
+    const [loginSuccess, setLoginSuccess] = useState(false);
+    const [registerSuccess, setRegisterSuccess] = useState(false);
 
     useEffect(() => {
-        if (!state.loading && !state.error) {
-            const loginModal = document.getElementById('loginModal');
-            if (loginModal) {
-                const bootstrapModal = bootstrap.Modal.getInstance(loginModal);
-                if (bootstrapModal) {
-                    bootstrapModal.hide();
-                    setNotification({ title: "Welcome to Quizz! 😚😍😎", body: "Đăng nhập thành công" });
-                }
-            }
-
-            const registerModal = document.getElementById('registerModal');
-            if (registerModal) {
-                const bootstrapModal = bootstrap.Modal.getInstance(registerModal);
-                if (bootstrapModal) {
-                    bootstrapModal.hide();
-                    setNotification({ title: "Welcome to Quizz! 😚😍😎", body: "Đăng ký thành công" });
+        if (!state.loading) {
+            if (state.loginSuccess) {
+                const loginModal = document.getElementById('loginModal');
+                if (loginModal) {
+                    const bootstrapModal = bootstrap.Modal.getInstance(loginModal);
+                    if (bootstrapModal) {
+                        setTimeout(() => {
+                            bootstrapModal.hide();
+                        }, 800);
+                    }
                 }
             }
         }
@@ -64,6 +57,7 @@ const Authentication = () => {
     };
 
     const handleLoginSubmit = () => {
+        setLoginSuccess(false);
         login(loginForm.username, loginForm.password);
     };
 
@@ -87,16 +81,8 @@ const Authentication = () => {
         setErrors(formErrors);
 
         if (Object.keys(formErrors).length === 0) {
+            setRegisterSuccess(false);
             register(registerForm.username, registerForm.email, registerForm.password, registerForm.avatar);
-        }
-    };
-
-    const handleNotificationClose = () => {
-        setNotification(null);
-        if (redirectToLogin) {
-            const loginModal = new bootstrap.Modal(document.getElementById('loginModal'));
-            loginModal.show();
-            setRedirectToLogin(false);
         }
     };
 
@@ -112,7 +98,16 @@ const Authentication = () => {
                         </div>
                         <div className="modal-body">
                             <p>Tạo, chia sẻ và hơn thế nữa</p>
-                            {state.loading ? <Spinner animation="border" /> : (
+                            {state.loading ? (
+                                <div className="text-center mt-5 mb-5">
+                                    <Spinner animation="border" />
+                                    <p>Đang xử lý ...</p>
+                                </div>
+                            ) : state.loginSuccess ? (
+                                <div className="text-success text-center mt-5 mb-5">
+                                    <i class="fa-solid fa-check fs-1"></i>
+                                </div>
+                            ) : (
                                 <form>
                                     {state.error && (
                                         <div>
@@ -148,13 +143,24 @@ const Authentication = () => {
                         </div>
                         <div className="modal-body">
                             <p>Tham gia cộng đồng của chúng tôi</p>
-                            {state.error && (
-                                <div>
-                                    <div className="text-danger mb-3">{state.error}</div>
+                            {state.loading ? (
+                                <div className="text-center mt-5 mb-5">
+                                    <Spinner animation="border" />
+                                    <p>Đang xử lý ...</p>
                                 </div>
-                            )}
-                            {state.loading ? <Spinner animation="border" /> : (
+                            ) : state.registerSuccess ? (
+                                <div className="text-success text-center mt-5 mb-5">
+                                    <i class="fa-solid fa-check fs-1"></i>
+                                    <p>Đăng ký thành công!</p>
+                                    <p><a href="#" data-bs-dismiss="modal" data-bs-toggle="modal" data-bs-target="#loginModal">Đăng nhập</a> để tiếp tục.</p>
+                                </div>
+                            ) : (
                                 <form>
+                                    {state.error && (
+                                        <div>
+                                            <div className="text-danger mb-3">{state.error}</div>
+                                        </div>
+                                    )}
                                     <div className="mb-3">
                                         <label htmlFor="registerUsername" className="form-label">Tên đăng nhập</label>
                                         <input type="text" className="form-control" id="registerUsername" name="username" value={registerForm.username} onChange={handleRegisterChange} />
@@ -194,14 +200,6 @@ const Authentication = () => {
                     </div>
                 </div>
             </div>
-
-            {notification && (
-                <ToastNotification
-                    title={notification.title}
-                    body={notification.body}
-                    onClose={handleNotificationClose}
-                />
-            )}
         </div>
     );
 };

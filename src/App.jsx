@@ -14,6 +14,7 @@ const CreateNewQuiz = lazy(() => import('./pages/CreateNewQuiz/CreateNewQuiz'));
 const CreateNewSuccess = lazy(() => import('./components/CreateQuiz/CreateNewSuccess'));
 const Quiz = lazy(() => import('./pages/Quiz/Quiz'));
 const CreateQuestion = lazy(() => import('./pages/CreateQuestion/CreateQuestion'));
+const Question = lazy(() => import('./components/Question/Question'));
 
 function App() {
   const [loading, setLoading] = useState(false);
@@ -53,6 +54,7 @@ function App() {
           <Route path="/quiz/:quizId/create-question" element={<CreateQuestion />} />
           <Route path="/quiz/:quizId/success" element={<CreateNewSuccess />} />
           <Route path="/quiz/create/failure" element={<CreateNewSuccess />} />
+          <Route path="/quiz/:quizId/question" element={<Question />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Suspense>

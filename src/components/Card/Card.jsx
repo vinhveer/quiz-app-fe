@@ -6,7 +6,7 @@ const Card = ({ quiz }) => {
     <div className="card me-3 mb-3" style={{ width: '16rem' }}>
       <img src={image} className="card-img-top" alt={quiz.quizTitle} />
       <div className="card-body">
-        <small class="d-inline-flex mb-3 px-2 py-1 fw-semibold text-warning-emphasis bg-warning-subtle border border-warning-subtle rounded-2">
+        <small className="d-inline-flex mb-3 px-2 py-1 fw-semibold text-warning-emphasis bg-warning-subtle border border-warning-subtle rounded-2">
           {quiz.difficulty}
         </small>
         <h5 className="card-title">{quiz.quizTitle}</h5>

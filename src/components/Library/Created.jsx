@@ -19,7 +19,7 @@ const Created = () => {
             setQuizzes(myQuizzes);
         };
         fetchData();
-    }, []);
+    }, [getMyQuiz]);
 
     const handleSortSelect = (title) => {
         setSortTitle(title);
@@ -78,7 +78,7 @@ const Created = () => {
             >
                 {view === 'created' ? (
                     <div>
-                        <h4 className="mb-3">Created</h4>
+                        <h4 className="mb-3 mt-4">Created</h4>
                         <div className="options d-flex justify-content-left align-items-center mb-3">
                             <button type="button" className="btn btn-primary me-2">
                                 <i className="fa-solid fa-plus pe-2"></i>
@@ -92,7 +92,7 @@ const Created = () => {
                                 <i className="fa-solid fa-list pe-2"></i>
                                 Thêm thể loại mới
                             </button>
-                            <div className="dropdown ms-auto">
+                            <div className="dropdown ms-2">
                                 <button className="btn btn-outline-secondary d-flex align-items-center" type="button" id="sortDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                                     {sortTitle} <i className="ms-2 fa-solid fa-sort"></i>
                                 </button>
@@ -108,7 +108,7 @@ const Created = () => {
                                     </li>
                                 </ul>
                             </div>
-                            <form onSubmit={handleSearch} className="search mx-3 w-25">
+                            <form onSubmit={handleSearch} className="search mx-3">
                                 <input
                                     type="text"
                                     className="form-control"
@@ -117,8 +117,10 @@ const Created = () => {
                                     onChange={(e) => setSearchTerm(e.target.value)}
                                 />
                             </form>
+                        </div>
+                        <div className="mb-4 d-flex justify-content-between">
                             {selectedQuizzes.length > 0 && (
-                                <div className="selected-options ms-3">
+                                <div className="selected-options">
                                     <button className="btn btn-outline-primary me-2" onClick={handleSelectAll}>
                                         {selectedQuizzes.length === quizzes.length ? 'Deselect All' : 'Select All'}
                                     </button>
@@ -128,36 +130,54 @@ const Created = () => {
                                 </div>
                             )}
                         </div>
-                        <div className="d-flex justify-content-between align-items-center mb-3 flex-wrap">
-                            <div className="d-flex flex-wrap">
-                                {loading && <p>Loading...</p>}
-                                {error && <p>{error}</p>}
-                                {!loading && !error && quizzes.map((quiz) => (
+                        {loading && (
+                            <div className="d-flex align-items-center mb-3 flex-wrap">
+                                <div className="d-flex flex-wrap w-100 justify-content-center">
+                                    <div className="spinner-border text-center mt-5 mb-5" role="status">
+                                        <span className="visually-hidden">Loading...</span>
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+                        {error && <p>{error}</p>}
+                        {!loading && !error && quizzes.length === 0 && (
+                            <div className="d-flex align-items-center mb-3 flex-wrap">
+                                <div className="d-flex flex-wrap w-100 justify-content-center">
+                                    <p className="text-center mt-5 mb-5">Không có quiz</p>
+                                </div>
+                            </div>
+                        )}
+                        {!loading && !error && quizzes.length > 0 && (
+                            <div className="d-flex flex-wrap w-100 justify-content-left align-items-center">
+                                {quizzes.map((quiz) => (
                                     <div
                                         key={quiz.id}
-                                        className={`card mb-3 card-hori ${selectedQuizzes.includes(quiz.id) ? 'selected' : ''}`}
-                                        onClick={() => handleCardClick(quiz.id)}
+                                        className={`card mb-3 me-3 card-hori ${selectedQuizzes.includes(quiz.id) ? 'selected' : ''}`}
+                                        style={{ width: '18rem' }}
                                     >
                                         <img src={quiz.image} className="card-img-top" alt={quiz.title} />
-                                        <div className="card-body">
+                                        <div className="card-body" onClick={() => handleCardClick(quiz.id)}>
                                             <h5 className="card-title">{quiz.title}</h5>
                                             <p className="card-text">{quiz.description}</p>
                                             <small className="d-inline-flex mb-3 px-2 fw-semibold text-warning-emphasis bg-warning-subtle border border-warning-subtle rounded-2">
                                                 {quiz.difficulty}
                                             </small>
-                                            <input
-                                                type="checkbox"
-                                                checked={selectedQuizzes.includes(quiz.id)}
-                                                onChange={(e) => {
-                                                    e.stopPropagation();
-                                                    handleSelectQuiz(quiz.id);
-                                                }}
-                                            />
+                                            <div
+                                                className="checkbox-container"
+                                                onClick={(e) => e.stopPropagation()}
+                                            >
+                                                <input
+                                                    type="checkbox"
+                                                    checked={selectedQuizzes.includes(quiz.id)}
+                                                    onChange={() => handleSelectQuiz(quiz.id)}
+                                                    className='form-check-input'
+                                                />
+                                            </div>
                                         </div>
                                     </div>
                                 ))}
                             </div>
-                        </div>
+                        )}
                     </div>
                 ) : (
                     <div>
