@@ -8,13 +8,13 @@ import Navbar from './components/Navbar/Navbar';
 const Home = lazy(() => import('./pages/Home/Home'));
 const AccountSettings = lazy(() => import('./pages/Account/AccountSettings'));
 const NotFound = lazy(() => import('./pages/NotFound/NotFound'));
-const MyLibrary = lazy(() => import('./pages/MyLibrary/MyLibrary'));
 const Search = lazy(() => import('./pages/Search/Search'));
 const CreateNewQuiz = lazy(() => import('./pages/CreateNewQuiz/CreateNewQuiz'));
 const CreateNewSuccess = lazy(() => import('./components/CreateQuiz/CreateNewSuccess'));
 const Quiz = lazy(() => import('./pages/Quiz/Quiz'));
 const CreateQuestion = lazy(() => import('./pages/CreateQuestion/CreateQuestion'));
 const Question = lazy(() => import('./components/Question/Question'));
+const Explore = lazy(() => import('./pages/Explore/Explore'));
 
 function App() {
   const [loading, setLoading] = useState(false);
@@ -47,8 +47,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/account-settings" element={<AccountSettings />} />
-          <Route path="/library/*" element={<MyLibrary />} />
           <Route path="/search" element={<Search />} />
+          <Route path="/explore" element={<Explore />} />
           <Route path="/create-new-quiz" element={<CreateNewQuiz />} />
           <Route path="/quiz/:quizId" element={<Quiz />} />
           <Route path="/quiz/:quizId/create-question" element={<CreateQuestion />} />

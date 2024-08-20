@@ -51,11 +51,11 @@ const Quiz = () => {
   return (
     <div className="container-fluid">
       <div className="row">
-        <div className="col-md-4">
+        <div className="col-md-3">
           <div className="card">
             <div className="card-body">
               <img src={quiz.image} className='img-quiz-details' alt="Quiz" />
-              <h2 className='mt-3'>{quiz.title}</h2>
+              <h4 className='mt-3'>{quiz.title}</h4>
               <p>{quiz.description}</p>
               <small className="d-inline-flex mb-3 px-2 fw-semibold text-warning-emphasis bg-warning-subtle border border-warning-subtle rounded-2">
                 {quiz.difficulty}
@@ -102,28 +102,31 @@ const Quiz = () => {
             </div>
           </div>
         </div>
-        <div className="col-md-8">
-          <h4 className='mb-3'>Question</h4>
-          <div className="mb-3">
-            <button className="btn btn-outline-primary me-2">
-              Add new question
-            </button>
-            <button className="btn btn-outline-primary me-2">
-              Add new slide
-            </button>
-            <button className="btn btn-outline-danger">
-              More
-            </button>
-          </div>
+        <div className="col-md-9 mt-3 mt-md-0">
           <div className="card">
             <div className="card-body">
-              Question 1.
-              <h5>How to play?</h5>
+              <h4 className='mb-3'>Question</h4>
+              <div className="mb-3">
+                <button className="btn btn-outline-primary me-2">
+                  Add new question
+                </button>
+                <button className="btn btn-outline-primary me-2">
+                  Add new slide
+                </button>
+                <button className="btn btn-outline-danger">
+                  More
+                </button>
+              </div>
+              <div className="card">
+                <div className="card-body">
+                  Question 1.
+                  <h5>How to play?</h5>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
-
     </div>
   );
 };

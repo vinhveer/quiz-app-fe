@@ -62,32 +62,24 @@ const Navbar = () => {
                     {/* For desktop */}
                     <div className="collapse navbar-collapse" id="navbarNav">
                         <ul className="navbar-nav ms-auto me-2 mb-2 mb-lg-0">
-                            <li className={`nav-item ${isActive('/') ? 'active-item' : ''}`}>
+                            <li className={`nav-item nav-item-nav ${isActive('/') ? 'active-item' : ''}`}>
                                 <a className="nav-link" onClick={() => handleNavigation('/')}>
                                     <i className="fa-solid fa-house"></i>
                                     <span>Home</span>
                                 </a>
                             </li>
-                            <li className={`nav-item ${isActive('/explore') ? 'active-item' : ''}`}>
+                            <li className={`nav-item nav-item-nav ${isActive('/explore') ? 'active-item' : ''}`}>
                                 <a className="nav-link" onClick={() => handleNavigation('/explore')}>
                                     <i className="fa-solid fa-compass"></i>
                                     <span>Explore</span>
                                 </a>
                             </li>
-                            <li className={`nav-item ${isActive('/search') ? 'active-item' : ''}`}>
+                            <li className={`nav-item nav-item-nav ${isActive('/search') ? 'active-item' : ''}`}>
                                 <a className="nav-link" onClick={() => handleNavigation('/search')}>
                                     <i className="fa-solid fa-magnifying-glass"></i>
                                     <span>Search</span>
                                 </a>
                             </li>
-                            {user && (
-                                <li className={`nav-item ${isActive('/library') ? 'active-item' : ''}`}>
-                                    <a className="nav-link" onClick={() => handleNavigation('/library')}>
-                                        <i className="fa-solid fa-layer-group"></i>
-                                        <span>My Library</span>
-                                    </a>
-                                </li>
-                            )}
                         </ul>
                     </div>
 
@@ -107,32 +99,24 @@ const Navbar = () => {
             <nav className="navbar navbar-expand-lg bg-body-tertiary fixed-bottom mobile-mode">
                 <div className="container-fluid">
                     <ul className="nav-items w-100">
-                        <li className={`nav-item ${isActive('/') ? 'active-item' : ''}`}>
+                        <li className={`nav-item nav-item-nav ${isActive('/') ? 'active-item' : ''}`}>
                             <a className="nav-link" onClick={() => handleNavigation('/')}>
                                 <i className="fa-solid fa-house"></i><br />
                                 <span>Home</span>
                             </a>
                         </li>
-                        <li className={`nav-item ${isActive('/explore') ? 'active-item' : ''}`}>
+                        <li className={`nav-item nav-item-nav ${isActive('/explore') ? 'active-item' : ''}`}>
                             <a className="nav-link" onClick={() => handleNavigation('/explore')}>
                                 <i className="fa-solid fa-compass"></i><br />
                                 <span>Explore</span>
                             </a>
                         </li>
-                        <li className={`nav-item ${isActive('/search') ? 'active-item' : ''}`}>
+                        <li className={`nav-item nav-item-nav ${isActive('/search') ? 'active-item' : ''}`}>
                             <a className="nav-link" onClick={() => handleNavigation('/search')}>
                                 <i className="fa-solid fa-magnifying-glass"></i><br />
                                 <span>Search</span>
                             </a>
                         </li>
-                        {user && (
-                            <li className={`nav-item ${isActive('/library') ? 'active-item' : ''}`}>
-                                <a className="nav-link" onClick={() => handleNavigation('/library')}>
-                                    <i className="fa-solid fa-layer-group"></i><br />
-                                    <span>My Library</span>
-                                </a>
-                            </li>
-                        )}
                     </ul>
                 </div>
             </nav>

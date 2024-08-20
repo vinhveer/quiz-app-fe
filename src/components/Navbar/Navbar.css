@@ -26,12 +26,12 @@ a.navbar-brand img {
     margin-right: 5px;
 }
 
-.nav-item:hover {
+.nav-item-nav:hover {
     background-color: var(--color-light-hover);
     border-radius: 5px;
 }
 
-[data-bs-theme="dark"] .nav-item:hover {
+[data-bs-theme="dark"] .nav-item-nav:hover {
     background-color: var(--color-dark-hover);
 }
 
